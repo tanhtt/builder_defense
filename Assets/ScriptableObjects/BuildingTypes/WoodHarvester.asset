@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5afa6aeb53505494695dfe93c34f6558, type: 3}
+  m_Name: WoodHarvester
+  m_EditorClassIdentifier: 
+  nameString: Wood Harvester
+  prefab: {fileID: 6038642200638851890, guid: 402aa7c5b7620d84984ccd2879e735d6, type: 3}
+  generatorData:
+    timerMax: 1.5
+    resourceType: {fileID: 11400000, guid: 6a281e494610b394895675bf03e033a3, type: 2}
