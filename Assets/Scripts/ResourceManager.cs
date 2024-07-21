@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine;
 public class ResourceManager : Singleton<ResourceManager>
 {
     private Dictionary<ResourceTypeSO, int> resourceAmountDictionary;
+    public event EventHandler OnResourceAmountChanged;
 
     private void Awake()
     {
@@ -42,5 +44,11 @@ public class ResourceManager : Singleton<ResourceManager>
     {
         resourceAmountDictionary[resource] += amount;
         TestLogResources();
+        OnResourceAmountChanged?.Invoke(this, EventArgs.Empty);
+    }
+
+    public int GetResource(ResourceTypeSO resource)
+    {
+        return resourceAmountDictionary[resource];
     }
 }
