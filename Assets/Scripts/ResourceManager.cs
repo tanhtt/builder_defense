@@ -19,7 +19,7 @@ public class ResourceManager : Singleton<ResourceManager>
             resourceAmountDictionary[resource] = 0;
         }
 
-        TestLogResources();
+        //TestLogResources();
     }
 
     //private void Update()
@@ -43,12 +43,38 @@ public class ResourceManager : Singleton<ResourceManager>
     public void AddResource(ResourceTypeSO resource, int amount)
     {
         resourceAmountDictionary[resource] += amount;
-        TestLogResources();
+        //TestLogResources();
         OnResourceAmountChanged?.Invoke(this, EventArgs.Empty);
     }
 
     public int GetResource(ResourceTypeSO resource)
     {
         return resourceAmountDictionary[resource];
+    }
+
+    public bool CanAfford(ResourceAmount[] resourceAmounts)
+    {
+        foreach(ResourceAmount resourceAmount in resourceAmounts)
+        {
+            if (GetResource(resourceAmount.resourceType) > resourceAmount.amount)
+            {
+                //Can afford
+            }
+            else
+            {
+                //Can't afford
+                return false;
+            }
+        }
+        // Can afford
+        return true;
+    }
+
+    public void SpendResources(ResourceAmount[] resourceAmounts)
+    {
+        foreach (ResourceAmount resourceAmount in resourceAmounts)
+        {
+            resourceAmountDictionary[resourceAmount.resourceType] -= resourceAmount.amount;
+        }
     }
 }

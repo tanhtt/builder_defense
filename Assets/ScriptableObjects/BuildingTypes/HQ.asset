@@ -10,17 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5afa6aeb53505494695dfe93c34f6558, type: 3}
-  m_Name: WoodHarvester
+  m_Name: HQ
   m_EditorClassIdentifier: 
-  nameString: Wood Harvester
-  sprite: {fileID: 21300000, guid: 8ad8c153217d3aa4d9ce03edf2c57cb4, type: 3}
-  prefab: {fileID: 6038642200638851890, guid: 402aa7c5b7620d84984ccd2879e735d6, type: 3}
-  minConstructionRadius: 7
+  nameString: HQ
+  sprite: {fileID: 21300000, guid: 7030b8e3eb49e8440ae8eb3ec8b45d05, type: 3}
+  prefab: {fileID: 6038642200638851890, guid: 2b8b4049fbe99c84c9e886b61312d1fe, type: 3}
+  minConstructionRadius: 0
   generatorData:
-    timerMax: 1.5
+    timerMax: 2
     resourceType: {fileID: 11400000, guid: 6a281e494610b394895675bf03e033a3, type: 2}
     resourceDetectionRadius: 7
-    maxResourceAmount: 6
-  constructionResourceCostArray:
-  - resourceType: {fileID: 11400000, guid: 6a281e494610b394895675bf03e033a3, type: 2}
-    amount: 10
+    maxResourceAmount: 7

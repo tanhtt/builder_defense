@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class ResourceGeneratorData
+public class ResourceAmount
 {
-    public float timerMax;
     public ResourceTypeSO resourceType;
-    public float resourceDetectionRadius;
-    public int maxResourceAmount;
+    public int amount;
 }
