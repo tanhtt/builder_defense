@@ -15,6 +15,7 @@ MonoBehaviour:
   nameString: Stone Harvester
   sprite: {fileID: 21300000, guid: 0144c1ddb3220a24a87d9ac1dca550bf, type: 3}
   prefab: {fileID: 6038642200638851890, guid: 746028996f24c414f8e6d48881458d97, type: 3}
+  healthAmountMax: 100
   minConstructionRadius: 7
   generatorData:
     timerMax: 3

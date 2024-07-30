@@ -15,6 +15,7 @@ MonoBehaviour:
   nameString: Wood Harvester
   sprite: {fileID: 21300000, guid: 8ad8c153217d3aa4d9ce03edf2c57cb4, type: 3}
   prefab: {fileID: 6038642200638851890, guid: 402aa7c5b7620d84984ccd2879e735d6, type: 3}
+  healthAmountMax: 100
   minConstructionRadius: 7
   generatorData:
     timerMax: 1.5

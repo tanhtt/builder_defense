@@ -11,6 +11,7 @@ public class TooltipUI : MonoBehaviour
     private RectTransform rectTransform;
     private TextMeshProUGUI text;
     private RectTransform backgroundRect;
+    private TooltipTimer tooltipTimer;
     // Start is called before the first frame update
     void Awake()
     {
@@ -25,27 +26,30 @@ public class TooltipUI : MonoBehaviour
 
     private void Update()
     {
-        if (canvasRectTransform == null)
+        this.UpdatePosition();
+
+        if(this.tooltipTimer != null)
         {
-            Debug.LogWarning("canvasRectTransform is null. Please assign it in the Inspector.");
-            return;
+            this.tooltipTimer.timer -= Time.deltaTime;
+            if(this.tooltipTimer.timer < 0 )
+            {
+                Hide();
+            }
         }
-        if (rectTransform == null || backgroundRect == null)
-        {
-            Debug.LogWarning("RectTransform or backgroundRect is null. Please check the initialization.");
-            return;
-        }
+    }
+
+    private void UpdatePosition()
+    {
         Vector2 anchoredPosition = Input.mousePosition / canvasRectTransform.localScale.x;
 
-        if(anchoredPosition.x + backgroundRect.rect.width > canvasRectTransform.rect.width)
+        if (anchoredPosition.x + backgroundRect.rect.width > canvasRectTransform.rect.width)
         {
             anchoredPosition.x = canvasRectTransform.rect.width - backgroundRect.rect.width;
         }
-        if(anchoredPosition.y + backgroundRect.rect.height > canvasRectTransform.rect.height)
+        if (anchoredPosition.y + backgroundRect.rect.height > canvasRectTransform.rect.height)
         {
             anchoredPosition.y = canvasRectTransform.rect.height - backgroundRect.rect.height;
         }
-
         rectTransform.anchoredPosition = anchoredPosition;
     }
 
@@ -59,14 +63,21 @@ public class TooltipUI : MonoBehaviour
         backgroundRect.sizeDelta = textSize + padding;
     }
 
-    public void Show(string tooltipText)
+    public void Show(string tooltipText, TooltipTimer tooltipTimer = null)
     {
+        this.tooltipTimer = tooltipTimer;
         gameObject.SetActive(true);
         SetText(tooltipText);
+        this.UpdatePosition();
     }
 
     public void Hide()
     {
         gameObject.SetActive(false);
+    }
+
+    public class TooltipTimer
+    {
+        public float timer;
     }
 }

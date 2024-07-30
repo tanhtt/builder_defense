@@ -15,6 +15,7 @@ MonoBehaviour:
   nameString: Gold Harvester
   sprite: {fileID: 21300000, guid: 8ead931dd91bff8489e75de9c414f17f, type: 3}
   prefab: {fileID: 6038642200638851890, guid: 3a9895ad3eb02ce4c887753aab2b3f36, type: 3}
+  healthAmountMax: 100
   minConstructionRadius: 5
   generatorData:
     timerMax: 5
