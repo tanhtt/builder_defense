@@ -49,7 +49,7 @@ public class ResourceGenerator : MonoBehaviour
             timerMax = (generatorData.timerMax / 2f) + generatorData.timerMax * (1 - (float)nearbyResourceAmount / generatorData.maxResourceAmount);
         }
 
-        Debug.Log("nearbyResourceAmount: " + nearbyResourceAmount + "; timer max: " + timerMax);
+        //Debug.Log("nearbyResourceAmount: " + nearbyResourceAmount + "; timer max: " + timerMax);
     }
 
     private void Update()
@@ -58,7 +58,7 @@ public class ResourceGenerator : MonoBehaviour
         if(timer <= 0)
         {
             timer += timerMax;
-            Debug.Log("Ding: " + generatorData.resourceType.nameString);
+            //Debug.Log("Ding: " + generatorData.resourceType.nameString);
             ResourceManager.Instance.AddResource(generatorData.resourceType, 1);
         }
     }

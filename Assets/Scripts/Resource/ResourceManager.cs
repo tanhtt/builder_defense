@@ -3,13 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ResourceManager : Singleton<ResourceManager>
+public class ResourceManager : MonoBehaviour
 {
+    public static ResourceManager Instance { get; private set; }
     private Dictionary<ResourceTypeSO, int> resourceAmountDictionary;
+    [SerializeField] private List<ResourceAmount> resourceAmounts = new List<ResourceAmount>();
     public event EventHandler OnResourceAmountChanged;
 
     private void Awake()
     {
+        Instance = this;
+
         resourceAmountDictionary = new Dictionary<ResourceTypeSO, int>();
 
         ResourceTypeListSO resources = Resources.Load<ResourceTypeListSO>(typeof(ResourceTypeListSO).Name);
@@ -17,6 +21,11 @@ public class ResourceManager : Singleton<ResourceManager>
         foreach(ResourceTypeSO resource in resources.list)
         {
             resourceAmountDictionary[resource] = 0;
+        }
+
+        foreach(ResourceAmount resource in resourceAmounts)
+        {
+            AddResource(resource.resourceType, resource.amount);
         }
 
         //TestLogResources();

@@ -7,6 +7,7 @@ public class BuildingManager : Singleton<BuildingManager>
     private Camera mainCamera;
     private BuildingTypeListSO buildingTypeList;
     private BuildingTypeSO activeBuildingType;
+    [SerializeField] private Building hqBuilding;
 
     public event EventHandler<OnActiveBuildingTypeChangedEventArgs> OnActiveBuildingTypeChanged;
 
@@ -20,21 +21,36 @@ public class BuildingManager : Singleton<BuildingManager>
     {
         mainCamera = Camera.main;
         buildingTypeList = Resources.Load<BuildingTypeListSO>(typeof(BuildingTypeListSO).Name);
+
+        hqBuilding.GetComponent<HealthSystem>().OnDied += HQ_OnDied;
+    }
+
+    private void HQ_OnDied(object sender, EventArgs e)
+    {
+        GameOverUI.Instance.Show();
+        SoundManager.Instance.PlaySound(SoundManager.Sound.GameOver);
     }
 
     // Update is called once per frame
     void Update()
     {
+        HandleCreatingBuilding();
+    }
+
+    private void HandleCreatingBuilding()
+    {
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
-            if(activeBuildingType != null)
+            if (activeBuildingType != null)
             {
                 if (CanSpawnBuilding(activeBuildingType, UtilsClass.MouseWorldPosition(), out string errorMessage))
                 {
                     if (ResourceManager.Instance.CanAfford(activeBuildingType.constructionResourceCostArray))
                     {
                         ResourceManager.Instance.SpendResources(activeBuildingType.constructionResourceCostArray);
-                        Instantiate(activeBuildingType.prefab, UtilsClass.MouseWorldPosition(), Quaternion.identity);
+                        //Instantiate(activeBuildingType.prefab, UtilsClass.MouseWorldPosition(), Quaternion.identity);
+                        BuildingConstruction.Create(UtilsClass.MouseWorldPosition(), activeBuildingType);
+                        SoundManager.Instance.PlaySound(SoundManager.Sound.BuildingPlaced);
                     }
                     else
                     {
@@ -106,5 +122,10 @@ public class BuildingManager : Singleton<BuildingManager>
 
         errorMessage = "Too far from any other building!";
         return false;
+    }
+
+    public Building GetHQBuilding()
+    {
+        return hqBuilding;
     }
 }
