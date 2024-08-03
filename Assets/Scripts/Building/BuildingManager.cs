@@ -82,6 +82,7 @@ public class BuildingManager : Singleton<BuildingManager>
 
         Collider2D[] col2DArr = Physics2D.OverlapBoxAll(position + (Vector3)boxCollider2D.offset, boxCollider2D.size, 0);
 
+        // is clear area
         bool isClearArea = col2DArr.Length == 0;
         if (!isClearArea)
         {
@@ -89,6 +90,7 @@ public class BuildingManager : Singleton<BuildingManager>
             return false;
         }
 
+        // is same building type nearby
         col2DArr = Physics2D.OverlapCircleAll(position, building.minConstructionRadius);
         foreach(Collider2D collider2d in col2DArr)
         {
@@ -106,6 +108,18 @@ public class BuildingManager : Singleton<BuildingManager>
             }
         }
 
+        if(building.hasResourceGeneratorData)
+        {
+            ResourceGeneratorData resourceGeneratorData = building.generatorData;
+            int nearbyResourceAmount = ResourceGenerator.GetNearbyResourceAmount(resourceGeneratorData, position);
+            if(nearbyResourceAmount == 0)
+            {
+                errorMessage = "There are no nearby Resource Nodes!";
+                return false;
+            }
+        }
+
+        // is any building nearby
         float maxConstructionRadius = 25;
         col2DArr = Physics2D.OverlapCircleAll(position, maxConstructionRadius);
         foreach (Collider2D collider2d in col2DArr)

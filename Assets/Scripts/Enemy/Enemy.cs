@@ -6,8 +6,7 @@ public class Enemy : MonoBehaviour
 {
     public static Enemy Create(Vector3 position)
     {
-        Transform pfEnemy = Resources.Load<Transform>("pfEnemy");
-        Transform enemyTransform = Instantiate(pfEnemy, position, Quaternion.identity);
+        Transform enemyTransform = Instantiate(GameAssets.Instance.pfEnemy, position, Quaternion.identity);
 
         Enemy enemy = enemyTransform.GetComponent<Enemy>();
         return enemy;
@@ -36,11 +35,16 @@ public class Enemy : MonoBehaviour
     private void HealthSystem_OnDamaged(object sender, System.EventArgs e)
     {
         SoundManager.Instance.PlaySound(SoundManager.Sound.EnemyHit);
+        CinemacineShake.Instance.ShakeCamera(5, .1f);
+        ChromaticAberration.Instance.SetWeight(.5f);
     }
 
     private void HealthSystem_OnDied(object sender, System.EventArgs e)
     {
+        Instantiate(GameAssets.Instance.pfEnemyDieParitcles, transform.position, Quaternion.identity);
         SoundManager.Instance.PlaySound(SoundManager.Sound.EnemyDie);
+        CinemacineShake.Instance.ShakeCamera(7, .15f);
+        ChromaticAberration.Instance.SetWeight(.5f);
         Destroy(this.gameObject);
     }
 
@@ -81,7 +85,7 @@ public class Enemy : MonoBehaviour
         {
             HealthSystem healthSystem = building.GetComponent<HealthSystem>();
             healthSystem.TakeDamage(10);
-            Destroy(this.gameObject);
+            this.healthSystem.TakeDamage(9999);
         }
     }
 

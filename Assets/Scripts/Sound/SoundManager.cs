@@ -32,6 +32,7 @@ public class SoundManager : MonoBehaviour
         {
             soundDict[sound] = Resources.Load<AudioClip>(sound.ToString());
         }
+        volume = PlayerPrefs.GetFloat("soundVolume", .5f);
     }
 
     public void PlaySound(Sound sound)
@@ -43,12 +44,14 @@ public class SoundManager : MonoBehaviour
     {
         volume += 0.1f;
         volume = Mathf.Clamp01(volume);
+        PlayerPrefs.SetFloat("soundVolume", volume);
     }
 
     public void DecreaseVolume()
     {
         volume -= 0.1f;
         volume = Mathf.Clamp01(volume);
+        PlayerPrefs.SetFloat("soundVolume", volume);
     }
 
     public float GetVolume()
