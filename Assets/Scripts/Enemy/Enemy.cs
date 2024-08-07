@@ -6,9 +6,11 @@ public class Enemy : MonoBehaviour
 {
     public static Enemy Create(Vector3 position)
     {
-        Transform enemyTransform = Instantiate(GameAssets.Instance.pfEnemy, position, Quaternion.identity);
+        //Transform enemyTransform = Instantiate(GameAssets.Instance.pfEnemy, position, Quaternion.identity);
+        Transform newEnemyTransform = EnemySpawner.Instance.Spawn(GameAssets.Instance.pfEnemy.name, position, Quaternion.identity);
+        newEnemyTransform.gameObject.SetActive(true);
 
-        Enemy enemy = enemyTransform.GetComponent<Enemy>();
+        Enemy enemy = newEnemyTransform.GetComponent<Enemy>();
         return enemy;
     }
 
@@ -45,7 +47,8 @@ public class Enemy : MonoBehaviour
         SoundManager.Instance.PlaySound(SoundManager.Sound.EnemyDie);
         CinemacineShake.Instance.ShakeCamera(7, .15f);
         ChromaticAberration.Instance.SetWeight(.5f);
-        Destroy(this.gameObject);
+        //Destroy(this.gameObject);
+        EnemySpawner.Instance.Despawn(this.transform);
     }
 
     private void Update()

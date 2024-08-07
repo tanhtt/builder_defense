@@ -239,7 +239,7 @@ Transform:
   - {fileID: 469053996735790659}
   - {fileID: 28079697988995440}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &-7378655749492530060
 MonoBehaviour:
@@ -336,7 +336,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eea93b0b4bf449447ae460a22aae4ff6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootTimerMax: 0
+  lookForTargetTimerMax: 0.2
+  shootTimerMax: 0.3
 --- !u!1001 &2609802768986839188
 PrefabInstance:
   m_ObjectHideFlags: 0

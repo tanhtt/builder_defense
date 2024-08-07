@@ -102,7 +102,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3782207694134254267
 Transform:
   m_ObjectHideFlags: 0
@@ -118,7 +118,7 @@ Transform:
   - {fileID: 731437250827683776}
   - {fileID: 659375901740910739}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1470219674687778779
 BoxCollider2D:
@@ -204,6 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22c670fdd04d868429dec135d1073330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeToDie: 3
 --- !u!1 &7398304439724222746
 GameObject:
   m_ObjectHideFlags: 0

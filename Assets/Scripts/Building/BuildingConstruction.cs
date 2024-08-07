@@ -38,7 +38,7 @@ public class BuildingConstruction : MonoBehaviour
         if(constructionTimer < 0)
         {
             constructionTimer += constructionTimerMax;
-            Instantiate(GameAssets.Instance.pfBuildingPlacedParticle, transform.position, Quaternion.identity);
+            Instantiate(GameAssets.Instance.pfBuildingPlacedParticles, transform.position, Quaternion.identity);
             Instantiate(buildingType.prefab, transform.position, Quaternion.identity);
             SoundManager.Instance.PlaySound(SoundManager.Sound.BuildingPlaced);
             Destroy(gameObject);

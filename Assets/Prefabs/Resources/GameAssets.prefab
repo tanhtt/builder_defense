@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7856387045734667008
 MonoBehaviour:
@@ -47,6 +47,6 @@ MonoBehaviour:
   pfEnemy: {fileID: 2945465631285348743, guid: 945670f0b2854aa4697841e31de96427, type: 3}
   pfEnemyDieParitcles: {fileID: 4850068476918138423, guid: fa53ff3e077270e4d8a679c8fa7de07f, type: 3}
   pfArrowProjectile: {fileID: 3782207694134254267, guid: a8e97e962c4e7864c8ef25356c84ad17, type: 3}
-  pfBuildingDestroyParticles: {fileID: 222898084527167713, guid: 5731055b57af76744aa0f260d9e0e788, type: 3}
+  pfBuildingDestroyedParticles: {fileID: 222898084527167713, guid: 5731055b57af76744aa0f260d9e0e788, type: 3}
   pfBuildingConstruction: {fileID: 5825612401513822066, guid: 9c32c8182409f59479d262f700845042, type: 3}
-  pfBuildingPlacedParticle: {fileID: 1408080632602542178, guid: 4ac58936248f3144db274df6c4356236, type: 3}
+  pfBuildingPlacedParticles: {fileID: 1408080632602542178, guid: 4ac58936248f3144db274df6c4356236, type: 3}

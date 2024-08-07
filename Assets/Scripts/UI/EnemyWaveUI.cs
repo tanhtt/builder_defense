@@ -72,7 +72,7 @@ public class EnemyWaveUI : MonoBehaviour
         foreach (Collider2D col in col2DArr)
         {
             Enemy enemy = col.GetComponent<Enemy>();
-            if (enemy != null)
+            if (enemy != null && enemy.gameObject.activeSelf)
             {
                 if (targetEnemy == null)
                 {

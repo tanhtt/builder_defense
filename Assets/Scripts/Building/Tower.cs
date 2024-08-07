@@ -6,7 +6,7 @@ public class Tower : MonoBehaviour
 {
     private Enemy targetEnemy;
     private float lookForTargetTimer;
-    private float lookForTargetTimerMax = .2f;
+    [SerializeField] private float lookForTargetTimerMax = .2f;
     private float shootTimer;
     [SerializeField] private float shootTimerMax;
     private Vector3 projectileSpawnPos;
@@ -38,9 +38,10 @@ public class Tower : MonoBehaviour
         shootTimer -= Time.deltaTime;
         if(shootTimer < 0f)
         {
-            shootTimer += lookForTargetTimerMax;
+            shootTimer += shootTimerMax;
 
             if (targetEnemy == null) return;
+            if (!targetEnemy.gameObject.activeSelf) return;
             ArrowProjectile.Create(projectileSpawnPos, targetEnemy);
         }
     }
@@ -53,7 +54,7 @@ public class Tower : MonoBehaviour
         foreach (Collider2D col in col2DArr)
         {
             Enemy enemy = col.GetComponent<Enemy>();
-            if (enemy != null)
+            if (enemy != null && enemy.gameObject.activeSelf)
             {
                 if (targetEnemy == null)
                 {
